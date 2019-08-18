@@ -1092,9 +1092,9 @@ build_libsndfile() {
 }
 
 build_lame() {
-  do_git_checkout https://github.com/rbrito/lame.git
-  cd lame_git
-    apply_patch file://$patch_dir/lame3.patch # work on mtune=generic type builds :| TODO figure out why, report back to https://sourceforge.net/p/lame/bugs/443/
+  download_and_unpack_file https://sourceforge.net/projects/lame/files/lame/3.100/lame-3.100.tar.gz
+  cd lame-3.100
+    apply_patch file://$patch_dir/lame3.100.patch # https://github.com/bincrafters/community/issues/480 
     generic_configure "--enable-nasm"
     cpu_count=1 # can't handle it apparently... http://betterlogic.com/roger/2017/07/mp3lame-woe/
     do_make_and_make_install
